@@ -6,7 +6,6 @@ library(jsonlite)
 ## Getting spot prices
 
 url <-  'https://jsonrpc.barry.energy/json-rpc#Get%20Spot%20Price'
-key <- '/g1Ox71OYwlpyzdaq7+MXkVYA+/wfrOOLdzOxNWIkiTDd7Dp4O6djPmx/qUISwvzKwiD9nt9t08nr2687MJ8mQFgE/bxV8eH2tNU8B0apbpqEBcBcPvlNAd2wWqhdkDJ8SJC/TdIYhsE+tRnvMMKHv0wE5awKc+dG7DQgD9nl1g='
 ContentType <- 'application/json'
 
 body <- '{
@@ -33,7 +32,6 @@ View(data[["result"]])
 ## Retrieving metering points - This is some meta data
 
 url <-  'https://jsonrpc.barry.energy/json-rpc#Get%20MeteringPoints'
-key <- '/g1Ox71OYwlpyzdaq7+MXkVYA+/wfrOOLdzOxNWIkiTDd7Dp4O6djPmx/qUISwvzKwiD9nt9t08nr2687MJ8mQFgE/bxV8eH2tNU8B0apbpqEBcBcPvlNAd2wWqhdkDJ8SJC/TdIYhsE+tRnvMMKHv0wE5awKc+dG7DQgD9nl1g='
 ContentType <- 'application/json'
 
 body <- '{
@@ -56,7 +54,6 @@ content(post,"text") %>% fromJSON() -> data
 ## Get Aggregated Consumption
 
 url <-  'https://jsonrpc.barry.energy/json-rpc#Get%20Aggeregated%20Consumption'
-key <- '/g1Ox71OYwlpyzdaq7+MXkVYA+/wfrOOLdzOxNWIkiTDd7Dp4O6djPmx/qUISwvzKwiD9nt9t08nr2687MJ8mQFgE/bxV8eH2tNU8B0apbpqEBcBcPvlNAd2wWqhdkDJ8SJC/TdIYhsE+tRnvMMKHv0wE5awKc+dG7DQgD9nl1g='
 ContentType <- 'application/json'
 
 body <- '{
