@@ -1,7 +1,7 @@
 
-load_spotprices <- function(key = key
-                            ,start_date = start_date
-                            ,end_date = end_date){
+load_spotprices <- function(key
+                            ,start_date
+                            ,end_date){
   
   ### Loading libraries
   
@@ -14,7 +14,7 @@ load_spotprices <- function(key = key
   
   ### Calling the API
   
-  url <-  'https://jsonrpc.barry.energy/json-rpc#Get%20Spot%20Price'
+  url <- 'https://jsonrpc.barry.energy/json-rpc#Get%20Spot%20Price'
   ContentType <- 'application/json'
   
   
@@ -30,6 +30,11 @@ load_spotprices <- function(key = key
                ,body = body)
   
   spotprices <- content(post,"text") %>% fromJSON()
-  spotprices <- spotprices$result
-  assign(x = "spotprices",value = spotprices,envir = .GlobalEnv)
+  
+  if (names(spotprices)[3] == "result") {
+    spotprices <- spotprices$result
+  } else {
+    print("Error with loading the data, see the messages in the object")
+  }
+  assign(x = "spotprices",value = spotprices,envir = parent.frame())
 }

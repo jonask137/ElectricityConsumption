@@ -1,8 +1,8 @@
 
 
-load_aggr_consumption <- function(key = key
-                                  ,start_date = start_date
-                                  ,end_date = end_date){
+load_aggr_consumption <- function(key
+                                  ,start_date
+                                  ,end_date){
 
 ### Loading libraries
 
@@ -22,15 +22,24 @@ body <- paste0('{
    "method": "co.getbarry.api.v1.OpenApiController.getAggregatedConsumption",
     "id": 0,
     "jsonrpc": "2.0",
-    "params\": [\n    \"',start_date,'T01:00:00Z\",\n    \"',end_date,'T02:00:00Z\"\n    ]\n}')
+    "params": [
+    "',start_date,'T01:00:00Z",
+    "',end_date,'T02:00:00Z"
+    ]
+}')
 
 post <- POST(url = url
              ,add_headers('Authorization' = paste("Bearer ",key)
                           ,'Content-Type' = ContentType)
              ,body = body)
 
+aggr_cons <- content(post,"text") %>% fromJSON()
 
-data <- content(post,"text") %>% fromJSON()
-data <- data$result
-assign(x = "data",value = data,envir = .GlobalEnv)
+if (names(aggr_cons)[3] == "result") {
+    aggr_cons <- aggr_cons$result
+    } else {
+    print("Error with loading the data, see the messages in the object")
+    }
+
+assign(x = "aggr_cons",value = aggr_cons,envir = parent.frame())
 }
