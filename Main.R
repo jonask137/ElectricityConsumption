@@ -34,7 +34,7 @@ if (difftime(time1 = Sys.time(),time2 = Data$LastExtraction,units = "hours") > 1
 
 ### Preparing a dataframe with consumption aggregations ----
 
-df <- Data$AggrConsumption[,2:4]
+df <- Data$Raw_data$AggrConsumption[,2:4]
 df$date <- df$start %>% substr(start = 1,stop = 10)
 df$date <- as.Date(x = df$date)
 df$start <- df$start %>% substr(start = 12,stop = 16)
@@ -47,5 +47,6 @@ df <- df[,col_order]
 
 df <- as_tibble(df)
 
+Data$Clean_data$AggrConsumption <- df
 
 ### Adding information on the spot price ----
