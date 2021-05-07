@@ -9,6 +9,9 @@ source(".envr.R")
 
 if (!file.exists("Data/Data.rds")) {
   print("The data is not loaded, pulling the data from Barry")
+} else {
+  print("Loading data ...")
+  Data <- readRDS("Data/Data.rds")
 }
 
 if (difftime(time1 = Sys.time(),time2 = Data$LastExtraction,units = "hours") > 1) {
@@ -48,5 +51,7 @@ df <- df[,col_order]
 df <- as_tibble(df)
 
 Data$Clean_data$AggrConsumption <- df
+
+saveRDS(object = Data,"Data/Data.rds")
 
 ### Adding information on the spot price ----
